@@ -6,21 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Fire Yellow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script src="../js/events.js"></script>
+
 </head>
 
 <body>
     <div class="container">
-        <form action="/action_page.php">
-            Email:<br>
-            <input type="text" name="email">
+        <h3>Existing Users</h3>
+        <form action="#">
+            Email:
             <br>
-            Password:<br>
-            <input type="text" name="Password">
-            <br><br>
-            <input type="submit" value="Submit">
-          </form> 
+            <!-- Existing email address -->
+            <input type="text" name="email-existing-user" id="user-email-existing" placeholder="example@ex.com">
+            <br> Password:
+            <br>
+            <!-- Existing User Password -->
+            <input type="password" name="password-existing" id="password-existing" minlength="8" required placeholder="8 characters minimum">
+            <br>
+            <br>
+            <!-- Existing User Submit Button -->
+            <input type="submit" value="Submit" id="submit-existing-user">
+        </form>
+
+
+        <h3>New Users</h3>
+        <form action="#">
+            Email:
+            <br>
+            <!-- New User Email -->
+            <input type="text" name="email-new-user" id="user-email-new-user" placeholder="example@ex.com">
+            <br> Password:
+            <br>
+            <!-- New User Password -->
+            <input type="password" name="password-new-user" id="password-new-user-one" minlength="8" required placeholder="8 characters minimum">
+            <br>
+            <br>
+            <!-- New User Password -->
+            <input type="password" name="password-new-user" id="password-new-user-two" minlength="8" required placeholder="8 characters minimum">
+            <br>
+            <br>
+            <!-- New User Submit Button -->
+            <input type="submit" value="Submit" id="submit-new-user">
+        </form>
     </div>
 </body>
 
