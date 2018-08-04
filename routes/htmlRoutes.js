@@ -22,8 +22,18 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/home', function(req, res){
+    res.render('home');
+  });
+
+  app.get("/home/:email", function(req, res){
+    var email = req.params.Email;
+    console.log("Email", email);
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
+
 };
