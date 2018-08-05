@@ -23,8 +23,20 @@ $(".Login").on("click", function(event) {
     Password: $(".password-input").val().trim()
   };
 
+  var getEmail = $(".email-input").val().trim();
+
   event.preventDefault();
-  console.log(newUser);
+  console.log(getEmail);
+
+  // $.get("/home/:Email", getEmail, function(data){
+  //   console.log(data);
+  //   location.replace("/home");
+  // });
+
+  $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
+    console.log(response);
+    location.replace("/home/" + getEmail);
+  });
 
   // $.get("/:Email/home", function(data) {});
 });
