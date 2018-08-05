@@ -22,14 +22,34 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/home', function(req, res){
-    res.render('home');
+  app.get("/home/:Email", function(req, res){
+    console.log(req.params.Email);
+    db.User.findOne({ where: { Email: req.params.Email } }).then(function(dbUser){
+      console.log(dbUser);
+      if(!dbUser){
+        res.render("404");
+      } else{
+        res.render("home", {email: dbUser.dataValues.Email});
+      }
+      
+    });
   });
 
-  app.get("/home/:email", function(req, res){
-    var email = req.params.Email;
-    console.log("Email", email);
+  app.get("/home/:Email/profile", function(req, res){
+    db.User.findOne({}).then(function(dbUser){
+      res.render("profile");
+    });
   });
+
+  // app.get("/home/:Email", function(req, res){
+  //   var email = req.params.Email;
+  //   //console.log("Email", email);
+  //   db.User.findOne({ where: { Email: email } }).then(function(dbUser){
+  //     res.render("home", {
+  //       Email: dbUser
+  //     });
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
