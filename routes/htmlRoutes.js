@@ -35,6 +35,12 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/home/:Email/profile", function(req, res){
+    db.User.findOne({}).then(function(dbUser){
+      res.render("profile");
+    });
+  });
+
   // app.get("/home/:Email", function(req, res){
   //   var email = req.params.Email;
   //   //console.log("Email", email);
