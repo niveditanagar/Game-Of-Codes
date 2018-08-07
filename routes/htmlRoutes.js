@@ -35,7 +35,6 @@ module.exports = function(app) {
         res.render("404");
       } else{
         res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
-        res.json(dbUser);
 
       }
 

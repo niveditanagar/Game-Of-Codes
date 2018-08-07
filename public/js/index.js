@@ -40,12 +40,7 @@ $(".Login").on("click", function(event) {
 
   $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
     console.log(response);
-    if(getPassword === response.Password){
-      console.log("NIVI IS AWESOME");
       location.replace("/home/" + getEmail);
-    } else{
-      alert("Incorrect Password");
-    }
     
   });
 
