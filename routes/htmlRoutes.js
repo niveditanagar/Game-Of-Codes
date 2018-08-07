@@ -24,13 +24,19 @@ module.exports = function(app) {
 
   app.get("/home/:Email", function(req, res){
     console.log(req.params.Email);
-    db.User.findOne({ where: { Email: req.params.Email } }).then(function(dbUser){
+    db.User.findOne({ where: { Email: req.params.Email }, include: [db.postContent], order:[[db.postContent,"createdAt", 'DESC']] }).then(function(dbUser){
       console.log(dbUser);
+      console.log("----------------------------------------------------------")
+      console.log(dbUser.postContents);
+      console.log("----------------------------------------------------------");
+      console.log(dbUser.postContent);
       if(!dbUser){
         res.render("404");
       } else{
-        res.render("home", {email: dbUser.dataValues.Email});
+        res.render("home", {email: dbUser.Email, content: dbUser.postContents});
       }
+
+      
       
     });
   });
@@ -40,6 +46,12 @@ module.exports = function(app) {
       res.render("profile");
     });
   });
+
+  // app.get("/home/:Email/api/content", function(req,res){
+  //   db.postContent.findAll({}).then(function(data){
+  //     res.render("home", { content: data } );
+  //   })
+  // })
 
   // app.get("/home/:Email", function(req, res){
   //   var email = req.params.Email;
