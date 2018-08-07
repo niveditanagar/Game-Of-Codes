@@ -1,14 +1,40 @@
- <div class="container">
-     <h1>Welcome {{email}}</h1>
-     <button>View Profile</button>
-       <form id="textPost" action="/action_page.php">
-           Post:
-           <br>
-           <input type="text" name="text">
-           <br>
-           <input type="submit" value="Submit">
-       </form>
-   </div>
-   <div class="contentDiv">
-       <p>Content Goes Here</p>
-   </div>
+<nav class="nav-heading" id="global-nav">
+    {{!-- <img src="/images/code_banner.png" alt="codet_banner" class="codet-banner"> --}}
+</nav>
+
+<div class="container user-post">
+    <h1 id="welcome-user">Welcome
+        <i>{{email}}!</i>
+    </h1>
+
+    <button class="buttons animated pulse" id="view-profile">View Profile</button>
+
+    <form id="textPost" action="/action_page.php">
+
+        <p id="post-heading">Post</p>
+        <i class="edit outline icon site-icons site-icon-pencil"></i>
+        <br> {{!--
+        <input type="text" name="text"> --}}
+        <textarea rows="10" cols="150" class="input-fields" placeholder="say anything">
+
+        </textarea>
+
+        <br>
+        <div>
+            <input type="submit" value="Submit" class="buttons animated pulse" id="submit-post">
+        </div>
+    </form>
+</div>
+
+
+
+{{!-- <div class="all-post">
+ <hr>   
+    <div class="contentDiv">
+        <p>Your Post</p>
+
+        <p class="user-post-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi saepe nobis natus quia esse enim sapiente modi numquam consectetur, 
+            id nulla est expedita eligendi quo tenetur fugiat totam ducimus nam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ullam rem laboriosam quis sint architecto aliquid quos 
+            ipsam. Nesciunt unde totam tempora voluptatibus exercitationem repudiandae dolor dignissimos incidunt ab in!</p>
+    </div>
+</div> --}}

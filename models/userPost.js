@@ -1,17 +1,16 @@
 module.exports = function (sequelize, DataTypes) {
-    var postContent = sequelize.define("postContent", {
-        Content: {
+    var PostContent = sequelize.define("PostContent", {
+        content: {
             type: DataTypes.STRING,
         }
     });
-
     
-    postContent.associate = function (models) {
-        postContent.belongsTo(models.User, {
+    PostContent.associate = function (models) {
+        PostContent.belongsTo(models.User, {
             foreignKey:{
                 allowNull: false,
             }
         });
     }
-    return postContent;
-}
+    return PostContent;
+ }
