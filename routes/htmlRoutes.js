@@ -24,21 +24,23 @@ module.exports = function(app) {
 
   app.get("/home/:Email", function(req, res){
     console.log(req.params.Email);
-    db.User.findOne({ where: { Email: req.params.Email }, include: [db.postContent], order:[[db.postContent,"createdAt", 'DESC']] }).then(function(dbUser){
+    console.log(req.body);
+    db.User.findOne({ where: { Email: req.params.Email }, include: [db.PostContent], order:[[db.PostContent,"createdAt", 'DESC']] }).then(function(dbUser){
       console.log(dbUser);
-      console.log("----------------------------------------------------------")
-      console.log(dbUser.postContents);
-      console.log("----------------------------------------------------------");
-      console.log(dbUser.postContent);
+      // console.log("----------------------------------------------------------")
+      // console.log(dbUser.postContents);
+      // console.log("----------------------------------------------------------");
+      // console.log(dbUser.postContent);
       if(!dbUser){
         res.render("404");
       } else{
-        res.render("home", {email: dbUser.Email, content: dbUser.postContents});
+        res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
+        res.json(dbUser);
+
       }
 
-      
-      
     });
+
   });
 
   app.get("/home/:Email/profile", function(req, res){
