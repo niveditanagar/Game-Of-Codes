@@ -1,3 +1,4 @@
+
 <nav class="nav-heading" id="global-nav">
     {{!-- <img src="/images/code_banner.png" alt="codet_banner" class="codet-banner"> --}}
 </nav>
@@ -38,3 +39,29 @@
             ipsam. Nesciunt unde totam tempora voluptatibus exercitationem repudiandae dolor dignissimos incidunt ab in!</p>
     </div>
 </div> --}}
+=======
+ <div class="container">
+     <h1>Welcome {{email}}</h1>
+     <button id="view-profile">View Profile</button>
+       <form id="textPost">
+           Post:
+           <br>
+           <input type="text" name="text" id="post-content">
+           <br>
+           <input type="submit" value="Submit" id="submit-content">
+       </form>
+   </div>
+   <div class="contentDiv">
+       <p>Content Goes Here</p>
+       <ul>
+           {{#each content}}
+           <li>
+               <p>{{Content}}</p>
+           </li>
+           {{/each}}
+       </ul>
+   </div>
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="/js/home.js"></script>
+
