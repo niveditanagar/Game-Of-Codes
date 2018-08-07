@@ -18,15 +18,18 @@ $(".Sign-up").on("click", function(event) {
 });
 
 $(".Login").on("click", function(event) {
-  var newUser = {
-    Email: $(".email-input").val().trim(),
-    Password: $(".password-input").val().trim()
-  };
+  // var newUser = {
+  //   Email: $(".email-input").val().trim(),
+  //   Password: $(".password-input").val().trim()
+  // };
 
   var getEmail = $(".email-input").val().trim();
+  var getPassword = $(".password-input").val().trim();
 
   event.preventDefault();
   console.log(getEmail);
+  console.log(getPassword);
+
 
   localStorage.setItem("Email", getEmail);
 
@@ -37,28 +40,34 @@ $(".Login").on("click", function(event) {
 
   $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
     console.log(response);
-    location.replace("/home/" + getEmail);
+    if(getPassword === response.Password){
+      console.log("NIVI IS AWESOME");
+      location.replace("/home/" + getEmail);
+    } else{
+      alert("Incorrect Password");
+    }
+    
   });
 
   // $.get("/:Email/home", function(data) {});
 });
 
 
-$(document).ready(function(){
-  var scrollTop = 0;
-  $(window).scroll(function(){
-    scrollTop = $(window).scrollTop();
-     $('.counter').html(scrollTop);
+// $(document).ready(function(){
+//   var scrollTop = 0;
+//   $(window).scroll(function(){
+//     scrollTop = $(window).scrollTop();
+//      $('.counter').html(scrollTop);
     
-    if (scrollTop >= 100) {
-      $('#global-nav').addClass('scrolled-nav');
-    } else if (scrollTop < 100) {
-      $('#global-nav').removeClass('scrolled-nav');
-    } 
+//     if (scrollTop >= 100) {
+//       $('#global-nav').addClass('scrolled-nav');
+//     } else if (scrollTop < 100) {
+//       $('#global-nav').removeClass('scrolled-nav');
+//     } 
     
-  }); 
+//   }); 
   
-});
+// });
 
 // // Get references to page elements
 // var $exampleText = $("#example-text");
