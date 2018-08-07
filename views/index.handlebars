@@ -1,19 +1,32 @@
-<div class="container">
-       <form action="/action_page.php">
-           Email:
-           <br>
-           <input class = "email-input" type="text" name="email" id="email">
-           <br> Password:
-           <br>
-           <input class = "password-input" type="password" name="Password">
-           <br>
-           <br>
-       </form>
-       <div class="Sign-Up">
-           <button class = "Sign-up">Sign Up</button>
-           <button class = "Login">Login</button>
-       </div>
-   </div>
+{{!--
+<div class="navbar">
+    <h1 id="brand">Fire Yellow</h1>
+</div> --}}
+
+<nav class="nav-heading" id="global-nav">
+    {{!-- <img src="/images/code_banner.png" alt="codet_banner" class="codet-banner"> --}}
+</nav>
+
+
+<h4 id="login-header">Login</h4>
+<div class="container login-form">
+    <form action="/action_page.php" class="form">
+        <br>
+        <i class="user icon site-icons"></i>
+        <input class="email-input input-fields" type="text" name="email" id="email" placeholder="email">
+
+        <br>
+        <br>
+        <i class="lock icon site-icons"></i>
+        <input class="password-input input-fields" type="password" name="password" placeholder="password">
+        <br>
+        <br>
+    </form>
+    <div class="index-button-options">
+        <button class="Sign-up buttons animated pulse">Sign Up</button>
+        <button class="Login buttons animated pulse">Login</button>
+    </div>
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
