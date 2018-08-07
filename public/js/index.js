@@ -28,6 +28,8 @@ $(".Login").on("click", function(event) {
   event.preventDefault();
   console.log(getEmail);
 
+  localStorage.setItem("Email", getEmail);
+
   // $.get("/home/:Email", getEmail, function(data){
   //   console.log(data);
   //   location.replace("/home");

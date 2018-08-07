@@ -17,6 +17,13 @@ module.exports = function(app) {
   //   });
   // });
 
+    app.get("/home/:Email/api/content", function(req, res){
+    db.postContent.findAll({ include: [{model: db.User, required: true}] }).then(function(dbUserContent){
+      console.log(dbUserContent);
+      res.json(dbUserContent);
+    });
+  });
+
   // Create a new example
   // app.post("/api/examples", function(req, res) {
   //   db.Example.create(req.body).then(function(dbExample) {
@@ -30,6 +37,17 @@ module.exports = function(app) {
     db.User.create(req.body).then(function(dbUsers) {
       res.json(dbUsers);
     });
+  });
+
+  app.post("/home/:Email/api/content", function(req, res){
+    var body = req.body;
+    console.log("body", body);
+    db.postContent.create({
+      Content: body.Content,
+      UserEmail: req.params.Email
+    }).then(function(dbpostContent){
+      res.json(dbpostContent);
+    })
   });
 
   // Delete an example by id
