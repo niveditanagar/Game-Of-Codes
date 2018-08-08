@@ -76,23 +76,10 @@ module.exports = function(app) {
   app.post("/api/users", function(req, res) {
     var body = req.body;
     console.log("body", body);
-    bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(body.Password, salt, function(err, hash){
-        body.Password = hash;
-        console.log(body.Password);
-        encp = body.Password;
 
-        console.log("Enc", encp);
-        db.User.create({Email: body.Email, Password: encp}).then(function(dbUser){
-          res.json(dbUser);
-        });
-      });
+    db.User.create(req.body).then(function(dbUsers) {
+      res.json(dbUsers);
     });
-
-
-    // db.User.create(req.body).then(function(dbUsers) {
-    //   res.json(dbUsers);
-    // });
 
 
   });
