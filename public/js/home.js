@@ -1,5 +1,3 @@
-// console.log(window);
-var log = console.log; 
 
 var email = localStorage.getItem("Email");
 console.log(email);
@@ -46,7 +44,7 @@ editor.on('text-change', function () {
 
 $.get("/home/" + email + "/api/content", function (data) {
     console.log(data);
-    //location.replace("/home/" + email + "/api/content");
+    location.replace("/home/" + email + "/api/content");
 })
 
 

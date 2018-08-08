@@ -23,20 +23,50 @@ module.exports = function(app) {
   });
 
   app.get("/home/:Email", function(req, res){
-    console.log(req.params.Email);
-    console.log(req.body);
-    db.User.findOne({ where: { Email: req.params.Email }, include: [db.PostContent], order:[[db.PostContent,"createdAt", 'DESC']] }).then(function(dbUser){
-      console.log(dbUser);
-      console.log("----------------------------------------------------------")
-      // console.log("----------------------------------------------------------");
-      // console.log(dbUser.postContent);
-      if(!dbUser){
-        res.render("404");
-      } else{
-        res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
-      }
-
+    db.User.findOne({where: {Email: req.params.Email} }).then(function(dbUser){
+      res.render("home", {email: dbUser.Email});
     });
+  });
+
+  app.get("/home/:Email/:Password", function(req, res){
+    console.log(req.params.Email);
+
+    console.log(req.params.Password);
+    bcrypt.genSalt(10, function(err, salt){
+      bcrypt.hash(req.params.Password, salt, function(err, hash){
+        req.params.Password = hash;
+        encp = req.params.Password;
+
+        console.log("Enc", encp);
+        db.User.findOne({where: { Email: req.params.Email}, $and: { Password: encp} }).then(function(dbUser){
+          console.log(dbUser);
+          if(!dbUser){
+            res.render("404");
+          } else if(!dbUser.Password){
+            res.render("403");
+          } else{
+            res.render("home", {email: dbUser.Email});
+            // res.json(dbUser);
+          }
+
+
+
+
+        });
+      });
+    });
+
+    // db.User.findOne({ where: { Email: req.params.Email }, include: [db.PostContent], order:[[db.PostContent,"createdAt", 'DESC']] }).then(function(dbUser){
+    //   console.log(dbUser);
+    //   if(!dbUser){
+    //     res.render("404");
+    //   } else{
+    //     res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
+    //     res.json(dbUser);
+
+    //   }
+
+    // });
 
   });
 
