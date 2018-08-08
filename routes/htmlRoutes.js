@@ -32,6 +32,7 @@ module.exports = function(app) {
 
   app.get("/home/:Email/:Password", function(req, res){
     console.log(req.params.Email);
+
     console.log(req.params.Password);
     bcrypt.genSalt(10, function(err, salt){
       bcrypt.hash(req.params.Password, salt, function(err, hash){
@@ -49,6 +50,9 @@ module.exports = function(app) {
             res.render("home", {email: dbUser.Email});
             // res.json(dbUser);
           }
+
+
+
 
         });
       });
