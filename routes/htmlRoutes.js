@@ -1,7 +1,5 @@
 var db = require("../models");
 
-var bcrypt = require('bcrypt');
-
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {

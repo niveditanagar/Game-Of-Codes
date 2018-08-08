@@ -1,28 +1,8 @@
 ::placeholder {
   color: #ECE7E7;
-  opacity: 1; /* Firefox */
-}
-
-input[type=text], input[type=password], textarea{
-  -webkit-transition: all 0.30s ease-in-out;
-  -moz-transition: all 0.30s ease-in-out;
-  -ms-transition: all 0.30s ease-in-out;
-  -o-transition: all 0.30s ease-in-out;
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #DDDDDD;
-}
- 
-input[type=text]:focus, input:focus, textarea {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid rgba(81, 203, 238, 1);
-}
-
-.list-group-item {
-  line-height: 2.5;
+  /* opacity: 1; */
+  font-family: 'Poiret One', cursive;
+  letter-spacing: 2px;
 }
 
 .body{
@@ -30,17 +10,19 @@ input[type=text]:focus, input:focus, textarea {
   color: #e64a19;
   font-family: 'Karla', sans-serif;
   overflow-x:hidden;
-  /* overflow-y:hidden; */
+
 }
 
 .buttons{
-  background-color: #ffb74d;
-  border-color: #ffb74d;
+  background-color: #39424E;
+  border-color: #39424E;
   border-radius: 5px;
   color: white;
   width: 100px;
   height: 30px;
   margin: 10px;
+  font-family: 'Poiret One', cursive;
+  letter-spacing: 2px;
 }
 
 .buttons:hover{
@@ -92,35 +74,31 @@ textarea{
   box-shadow: 0px 2px 40px rgba(155, 151, 143 ,0.9);
   top: 0;
   z-index: 1;
+  opacity: 0.99;
 }
 
-
-#global-nav {
-  position: fixed;
-  top: 0;
-  z-index: 9999;
-  height: 150px;
-  width: 100%;
-  background: #ffb74d;
-  color: #fff;
-  line-height: 150px;
-    -webkit-transition: height .5s, line-height .5s; /* Safari */
-    transition: height .5s, line-height .5s;
+input[type=text], input[type=password], textarea{
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 0.5px solid #DDDDDD;
 }
-
-.counter{
-  width: 20px;
-  height: 20px;
-  background: black;
-  color: #fff;
-  position: fixed;
-  top: 120px;
-  right: 0;
+ 
+input[type=text]:focus, input:focus, textarea {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  /* box-shadow: 0 0 5px #688F7C; */
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+  /* border: 1px solid #688F7C; */
 }
-
 
 .site-icons{
-  color: #2A2A2A;
+  color: #19232F;
 }
 
 .user-post {
@@ -128,42 +106,26 @@ textarea{
     top: 200px;
 }
 
-#welcome-user{
-  position: relative;
-  top: 50px;
-}
 
-#submit-post{
-  position: relative;
-  top: 10px;
-  left: 100px;
-}
-
-/* Index.handlebars */
+/* Index.handlebars: sign-in/login page */
 
 /* Login header */
 #login-header{
   font-size: 40px;
   margin-bottom: 0px;
   position: relative;
-  top: 330px;
-  left: 585px;
+  top: 300px;
+  left: 590px;
   color: black;
   letter-spacing: 3px;
+  font-family: 'Poiret One', cursive;
 }
+
+
+
 
 
 /* Home.handlebars */
-.nav-heading{
-  position: fixed;
-  background-color:#EDC458;
-  width: 100%;
-  height: 225px;
-  z-index: 4;
-  top: 0;
-  box-shadow: 0px 2px 40px rgba(155, 151, 143 ,0.9);
-}
-
 #textPost{
   position: relative;
   top: 50px;
@@ -192,20 +154,13 @@ hr{
   color: #2A2A2A;
 }
 
-.all-post{
-  width: 85%;
-  height: 400px;
-  position: relative;
-  top: 300px;
-  margin: 50px 100px;
-  border-radius: 50px;
-}
-
 .contentDiv{
   position: relative;
   top: 25px;
   text-align: center;
   color: #2A2A2A;
+  width: 600px;
+  margin-left: 300px;
 }
 
 /* View Profile Button */
@@ -219,3 +174,134 @@ hr{
   position: relative;
   top: 40px;
 }
+
+.contentDiv{
+  float: left;
+  position: relative;
+  top: 400px;
+}
+
+.user-input{
+  height: 375px;
+  width: 900px;
+  color: #19232F;
+  font-family: 'Karla', sans-serif;
+  margin: 0px 0px 10px 190px;
+  /* background-color: white; */
+  
+}
+
+#welcome-user{
+  position: relative;
+  top: 20px;
+  color: #19232F;
+  font-family: 'Bitter', serif;
+}
+
+.user-action{
+  position: relative;
+  right: 292px;
+  top: 45px;
+  margin-bottom: -20px;
+}
+
+#submit-content{
+  position: relative;
+  top: 80px;
+  left: 400px;
+}
+
+.recent-post{
+  text-align: center;
+  list-style: none;
+}
+
+#post-content{
+  background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+/* mimic */
+#quillEditor {
+    height: 180px;
+    overflow: auto;
+  }
+  
+  #myPrecious:Before {
+    color: lightsteelblue;
+    content: "Delta (Aka precious content) with .getContents() :\A\A";
+  }
+  
+  #myPrecious {
+    padding: 20px;
+    height: 120px;
+    background-color: #444;
+    color: orange;
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+    border-radius: 5px;
+    overflow: auto;
+    border: 10px solid #444;
+  }
+  
+  #justText:Before {
+    color: lightsteelblue;
+    content: "Just Text with .getText():\A\A";
+  }
+  
+  #justText {
+    padding: 20px;
+    height: 120px;
+    background-color: #555;
+    color: lightgrey;
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+    border-radius: 5px;
+    overflow: auto;
+    border: 10px solid #555;
+  }
+  
+  #justHtml:Before {
+    color: slategrey;
+    font-weight: bold;
+    content: "Just Html with root.innerHTML";
+  }
+  
+  /* Add you own css or copy it from the theme stylesheet
+   */
+  #justHtml {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    margin: 0px;
+    padding: 20px;
+    height: 120px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: auto;
+    border: 10px solid white;
+    margin-top:10px;  
+  }

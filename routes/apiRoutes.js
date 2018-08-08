@@ -1,10 +1,6 @@
 var db = require("../models");
 var log = console.log;
 
-var bcrypt = require('bcrypt');
-
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(app) {
   // Get all examples
@@ -104,8 +100,8 @@ module.exports = function(app) {
   app.post("/home/:Email/api/content", function(req, res){
     var body = req.body;
     console.log("body", body);
-    db.postContent.create({
-      Content: body.Content,
+    db.PostContent.create({
+      content: body.content,
       UserEmail: req.params.Email
     }).then(function(dbpostContent){
       res.json(dbpostContent);
