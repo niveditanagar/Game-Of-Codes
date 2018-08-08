@@ -27,15 +27,13 @@ module.exports = function(app) {
     console.log(req.body);
     db.User.findOne({ where: { Email: req.params.Email }, include: [db.PostContent], order:[[db.PostContent,"createdAt", 'DESC']] }).then(function(dbUser){
       console.log(dbUser);
-      // console.log("----------------------------------------------------------")
-      // console.log(dbUser.postContents);
+      console.log("----------------------------------------------------------")
       // console.log("----------------------------------------------------------");
       // console.log(dbUser.postContent);
       if(!dbUser){
         res.render("404");
       } else{
         res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
-
       }
 
     });

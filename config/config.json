@@ -5,11 +5,11 @@
     "database": "social_media_db",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": null,
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",

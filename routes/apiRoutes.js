@@ -42,8 +42,8 @@ module.exports = function(app) {
   app.post("/home/:Email/api/content", function(req, res){
     var body = req.body;
     console.log("body", body);
-    db.postContent.create({
-      Content: body.Content,
+    db.PostContent.create({
+      content: body.content,
       UserEmail: req.params.Email
     }).then(function(dbpostContent){
       res.json(dbpostContent);
