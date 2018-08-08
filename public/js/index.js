@@ -30,7 +30,6 @@ $(".Login").on("click", function(event) {
   console.log(getEmail);
   console.log(getPassword);
 
-
   localStorage.setItem("Email", getEmail);
 
   // $.get("/home/:Email", getEmail, function(data){
@@ -40,13 +39,15 @@ $(".Login").on("click", function(event) {
 
   $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
     console.log(response);
-      location.replace("/home/" + getEmail);
-    
+    location.replace("/home/" + getEmail);
   });
 
+  $.ajax({url: "/home/" + getPassword, method: "GET"}).then(function(response){
+    console.log(response);
+    location.replace("/home/" + getPassword);
+  });
   // $.get("/:Email/home", function(data) {});
 });
-
 
 // $(document).ready(function(){
 //   var scrollTop = 0;
