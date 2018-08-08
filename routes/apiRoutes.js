@@ -1,5 +1,11 @@
 var db = require("../models");
 var log = console.log;
+
+var bcrypt = require('bcrypt');
+
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function(app) {
   // Get all examples
   app.get("/api/examples", function(req, res) {
@@ -31,12 +37,68 @@ module.exports = function(app) {
   //   });
   // });
 
+  app.post("/login", function(req, res){
+    var body = req.body;
+    console.log(body);
+
+    db.User.findOne({where: {Email: body.Email}}).then(function(dbUser){
+      if(!dbUser){
+        res.status(404).end();
+      }
+      if(body.Password != dbUser.Password){
+        res.status(403).end();
+        console.log("Marlee is awesome");
+      }
+      res.status(200).end();
+    });
+
+    // bcrypt.genSalt(10, function(err, salt){
+    //   bcrypt.hash(body.Password, salt, function(err, hash){
+    //     body.Password = hash;
+    //     console.log(body.Password);
+    //     encp = body.Password;
+
+    //     console.log("Enc", encp);
+    //     // db.User.create({Email: body.Email, Password: encp}).then(function(dbUser){
+    //     //   res.json(dbUser);
+    //     // });
+
+    //     db.User.findOne({where: {Email: body.Email}}).then(function(dbUser){
+    //       console.log(dbUser.Password);
+    //       console.log(encp);
+    //       console.log(typeof dbUser.Password);
+    //       console.log(typeof encp);
+
+    //     });
+
+    //   });
+    // });
+
+  });
+
+
   app.post("/api/users", function(req, res) {
     var body = req.body;
     console.log("body", body);
-    db.User.create(req.body).then(function(dbUsers) {
-      res.json(dbUsers);
+    bcrypt.genSalt(10, function(err, salt){
+      bcrypt.hash(body.Password, salt, function(err, hash){
+        body.Password = hash;
+        console.log(body.Password);
+        encp = body.Password;
+
+        console.log("Enc", encp);
+        db.User.create({Email: body.Email, Password: encp}).then(function(dbUser){
+          res.json(dbUser);
+        });
+      });
     });
+
+
+    // db.User.create(req.body).then(function(dbUsers) {
+    //   res.json(dbUsers);
+    // });
+
+
   });
 
   app.post("/home/:Email/api/content", function(req, res){

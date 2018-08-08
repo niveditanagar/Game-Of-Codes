@@ -1,4 +1,4 @@
-console.log(window);
+
 
 var email = localStorage.getItem("Email");
 
@@ -6,7 +6,7 @@ console.log(email);
 
 $.get("/home/" + email + "/api/content",function(data){
     console.log(data);
-    //location.replace("/home/" + email + "/api/content");
+    location.replace("/home/" + email + "/api/content");
 })
 
 $("#view-profile").on("click", function(event){
