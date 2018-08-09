@@ -1,4 +1,3 @@
-
 var email = localStorage.getItem("Email");
 console.log(email);
 var log = console.log;
@@ -42,14 +41,10 @@ editor.on('text-change', function () {
     console.log("Delta object: ", delta.ops[0].insert);
 });
 
-
 $.get("/home/" + email + "/api/content", function (data) {
     console.log(data);
     location.replace("/home/" + email + "/api/content");
-})
-
-
-
+});
 
 $("#view-profile").on("click", function (event) {
     event.preventDefault();
@@ -62,7 +57,7 @@ $("#view-profile").on("click", function (event) {
 
 });
 
-
+// Submit Button
 
 $("#submit-content").on("click", function (event) {
     event.preventDefault();
@@ -72,7 +67,6 @@ $("#submit-content").on("click", function (event) {
     log("justHtml: ", justHtml.innerHTML);
     log("Delta object: ", delta.ops[0].insert);
     log("Delta: ", delta);
-    
     
     var newPost = {
         content: justHtml
@@ -87,13 +81,7 @@ $("#submit-content").on("click", function (event) {
         data: newPost
     }).then(function (response) {
         console.log(response);
-        // location.reload();
+         location.reload();
     });
-
-
-    // $.post("api/users/content", newPost, function(data){
-    //     console.log(data);
-    //     location.reload();
-    // });
 
 });
