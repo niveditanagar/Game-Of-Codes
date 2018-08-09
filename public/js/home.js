@@ -1,6 +1,7 @@
 
 var email = localStorage.getItem("Email");
 console.log(email);
+var log = console.log;
 
 // Quill.js
 var options = {
@@ -79,7 +80,7 @@ $("#submit-content").on("click", function (event) {
 
     //$("#user-latest-post").html(justHtml)
 
-    console.log(newPost);
+    console.log("new post:", newPost.content);
 
     $.ajax("/home/" + email + "/api/content", {
         type: "POST",
