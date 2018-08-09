@@ -1,6 +1,5 @@
-
 <nav class="nav-heading" id="global-nav">
-    <img src="/images/code_banner.png" alt="codet_banner" class="codet-banner">
+    <img src="/images/codet_banner_3.png" alt="codet_banner" class="codet-banner">
 </nav>
 
 <div class="container user-post">
@@ -8,60 +7,70 @@
         <i>{{email}}!</i>
     </h1>
 
-    <button class="buttons animated pulse" id="view-profile">View Profile</button>
+    {{!--
+    <button class="buttons animated pulse" id="view-profile">View Profile</button> --}}
 
     <form id="textPost" action="/action_page.php">
 
-        <p id="post-heading">Post</p>
-        <i class="edit outline icon site-icons site-icon-pencil"></i>
-        <br> {{!--
-        <input type="text" name="text"> --}}
-        <textarea rows="10" cols="150" class="input-fields" placeholder="say anything">
-
-        </textarea>
-
-        <br>
-        <div>
-            <input type="submit" value="Submit" class="buttons animated pulse" id="submit-post">
+        <div class="user-action">
+            <p id="post-heading">Post</p>
+            <i class="edit outline icon site-icons site-icon-pencil"></i>
         </div>
+
+        {{!-- <br> 
+        <textarea rows="10" cols="150" class="input-fields" id="post-content"></textarea> 
+        <br>  --}}
+        
+        
+        {{!-- additional --}}
+
+        <div class="user-input container">
+            <div id="post-content">
+            </div>
+        </div>
+
+        {{!-- additional --}}
     </form>
+
+
+    <div>
+        <input type="submit" value="Submit" class="buttons animated pulse" id="submit-content">
+    </div>
+
+</div>
+
+
+<div class="contentDiv">
+    <ul>
+        {{#each content}}
+        <div class="ui segment">
+            <h6 class="ui right floated header">{{createdAt}}</h6>
+            <div class="ui clearing divider"></div>
+            <p data-id="{{this.id}}" id="user-latest-post">{{{content}}}</p>
+        </div>
+        {{/each}}
+    </ul>
+</div>
+
+<div class="social-links">
+    {{!--
+    <i class="github icon site-icons" id="github-icon"></i> --}}
 </div>
 
 
 
-{{!-- <div class="all-post">
- <hr>   
-    <div class="contentDiv">
-        <p>Your Post</p>
 
-        <p class="user-post-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi saepe nobis natus quia esse enim sapiente modi numquam consectetur, 
-            id nulla est expedita eligendi quo tenetur fugiat totam ducimus nam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ullam rem laboriosam quis sint architecto aliquid quos 
-            ipsam. Nesciunt unde totam tempora voluptatibus exercitationem repudiandae dolor dignissimos incidunt ab in!</p>
-    </div>
-</div> --}}
-=======
- <div class="container">
-     <h1>Welcome {{email}}</h1>
-     <button id="view-profile">View Profile</button>
-       <form id="textPost">
-           Post:
-           <br>
-           <input type="text" name="text" id="post-content">
-           <br>
-           <input type="submit" value="Submit" id="submit-content">
-       </form>
-   </div>
-   <div class="contentDiv">
-       <p>Content Goes Here</p>
-       <ul>
-           {{#each content}}
-           <li>
-               <p>{{Content}}</p>
-           </li>
-           {{/each}}
-       </ul>
-   </div>
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="/js/home.js"></script>
+{{!-- additional --}}
 
+
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+
+
+</script> {{!-- additional --}} {{!-- Original Scripts --}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/home.js"></script>
