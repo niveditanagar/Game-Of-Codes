@@ -19,7 +19,11 @@
 * external javascript files
 
 ## Authors:
-* Patrick Joyce
 * Daniel Z
+* Marlee Gerard
 * Nivi Nagar
-* Marlee
+* Patrick Joyce
+
+
+## Deployed App
+* [Game-of-Codes](https://dashboard.heroku.com/apps/sheltered-fortress-87681) - App
