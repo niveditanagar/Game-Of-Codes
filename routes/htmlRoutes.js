@@ -23,8 +23,8 @@ module.exports = function(app) {
   });
 
   app.get("/home/:Email", function(req, res){
-    db.User.findOne({where: {Email: req.params.Email} }).then(function(dbUser){
-      res.render("home", {email: dbUser.Email});
+    db.User.findOne({where: {Email: req.params.Email}, include: [db.PostContent], order: [[db.PostContent, "createdAt", 'DESC']] }).then(function(dbUser){
+      res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
     });
   });
 

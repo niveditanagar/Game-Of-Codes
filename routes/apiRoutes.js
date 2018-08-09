@@ -26,6 +26,13 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/home/:Password/api/content", function(req, res){
+    db.postContent.findAll({ include: [{model: db.User, required: true}] }).then(function(dbUserContent){
+      console.log(dbUserContent);
+      res.json(dbUserContent);
+    });
+  });
+
   // Create a new example
   // app.post("/api/examples", function(req, res) {
   //   db.Example.create(req.body).then(function(dbExample) {
@@ -94,6 +101,18 @@ module.exports = function(app) {
       res.json(dbpostContent);
     })
   });
+
+  app.post("/home/:Password/api/content", function(req, res){
+    var body = req.body;
+    console.log("body", body);
+    db.postContent.create({
+      Content: body.Content,
+      UserPassword: req.params.Password
+    }).then(function(dbpostContent){
+      res.json(dbpostContent);
+    })
+  });
+
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {

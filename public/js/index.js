@@ -31,6 +31,8 @@ $(".Login").on("click", function(event) {
   event.preventDefault();
   console.log(getUser);
 
+
+  localStorage.setItem("Email", getEmail);
   $.post("/login", getUser, function(data, statusTest, jqXHR) {
     console.log(data);
 
@@ -43,10 +45,12 @@ $(".Login").on("click", function(event) {
     //location.replace("/login");
   });
 
+
   // $.get("/home/:Email", getEmail, function(data){
   //   console.log(data);
   //   location.replace("/home");
   // });
+
 
   // $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
   //   console.log(response);
@@ -54,11 +58,8 @@ $(".Login").on("click", function(event) {
   //   // location.replace()
   // });
 
- 
-
 
 });
-
 
 // $(document).ready(function(){
 //   var scrollTop = 0;
