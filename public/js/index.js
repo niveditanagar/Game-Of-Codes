@@ -31,6 +31,7 @@ $(".Login").on("click", function(event) {
   event.preventDefault();
   console.log(getUser);
 
+
   $.post("/login", getUser, function(data, statusTest, jqXHR) {
     console.log(data);
 
@@ -43,10 +44,23 @@ $(".Login").on("click", function(event) {
     //location.replace("/login");
   });
 
+
   // $.get("/home/:Email", getEmail, function(data){
   //   console.log(data);
   //   location.replace("/home");
   // });
+
+
+  $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
+    console.log(response);
+    location.replace("/home/" + getEmail);
+  });
+
+  $.ajax({url: "/home/" + getPassword, method: "GET"}).then(function(response){
+    console.log(response);
+    location.replace("/home/" + getPassword);
+  });
+  // $.get("/:Email/home", function(data) {});
 
   // $.ajax({url: "/home/" + getEmail, method: "GET"}).then(function(response){
   //   console.log(response);
@@ -57,8 +71,8 @@ $(".Login").on("click", function(event) {
  
 
 
-});
 
+});
 
 // $(document).ready(function(){
 //   var scrollTop = 0;
