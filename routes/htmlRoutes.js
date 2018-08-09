@@ -13,7 +13,7 @@ module.exports = function(app) {
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function (
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(
       dbExample
     ) {
       res.render("example", {
@@ -22,45 +22,56 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/home/:Email", function(req, res) {
-    console.log(req.params.Email);
-    console.log(req.body);
-    db.User.findOne({
-      where: { Email: req.params.Email },
-      include: [db.PostContent],
-      order: [[db.PostContent, "createdAt", "DESC"]]
-    }).then(function(dbUser) {
-      console.log(dbUser);
-      if (!dbUser) {
-        res.render("404");
-      } else {
-        res.render("home", { email: dbUser.Email, content: dbUser.PostContents });
-      };
-      })
-  });
-
-  app.get("/home/:Password", function (req, res) {
-    console.log(req.params.Password);
-    console.log(req.body);
-    db.User.findOne({ where: { Password: req.params.Password }, include: [db.PostContent], order: [[db.PostContent, "createdAt", 'DESC']] })
-      .then(function (dbUser) {
-      console.log(dbUser);
-      if (!dbUser) {
-          res.render("404");
-        } else {
-          res.render("home", { Password: dbUser.Password, content: dbUser.PostContents });
-        };
-      })
-  });
-
-  app.get("/home/:Email/profile", function(req, res) {
-    db.User.findOne({}).then(function(dbUser) {
-      res.render("profile");
+  app.get("/home/:Email", function(req, res){
+    db.User.findOne({where: {Email: req.params.Email}, include: [db.PostContent], order: [[db.PostContent, "createdAt", 'DESC']] }).then(function(dbUser){
+      res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
     });
   });
 
-  app.get("/home/:Password/profile", function(req, res) {
-    db.User.findOne({}).then(function(dbUser) {
+  app.get("/home/:Email/:Password", function(req, res){
+    console.log(req.params.Email);
+
+    console.log(req.params.Password);
+    bcrypt.genSalt(10, function(err, salt){
+      bcrypt.hash(req.params.Password, salt, function(err, hash){
+        req.params.Password = hash;
+        encp = req.params.Password;
+
+        console.log("Enc", encp);
+        db.User.findOne({where: { Email: req.params.Email}, $and: { Password: encp} }).then(function(dbUser){
+          console.log(dbUser);
+          if(!dbUser){
+            res.render("404");
+          } else if(!dbUser.Password){
+            res.render("403");
+          } else{
+            res.render("home", {email: dbUser.Email});
+            // res.json(dbUser);
+          }
+
+
+
+
+        });
+      });
+    });
+
+    // db.User.findOne({ where: { Email: req.params.Email }, include: [db.PostContent], order:[[db.PostContent,"createdAt", 'DESC']] }).then(function(dbUser){
+    //   console.log(dbUser);
+    //   if(!dbUser){
+    //     res.render("404");
+    //   } else{
+    //     res.render("home", {email: dbUser.Email, content: dbUser.PostContents});
+    //     res.json(dbUser);
+
+    //   }
+
+    // });
+
+  });
+
+  app.get("/home/:Email/profile", function(req, res){
+    db.User.findOne({}).then(function(dbUser){
       res.render("profile");
     });
   });
@@ -85,4 +96,5 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
+
 };
