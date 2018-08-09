@@ -22,6 +22,8 @@ module.exports = function(app) {
     });
   });
 
+  
+
   app.get("/home/:Email", function(req, res) {
     console.log(req.params.Email);
     console.log(req.body);
