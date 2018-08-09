@@ -13,7 +13,7 @@ module.exports = function(app) {
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
+    db.Example.findOne({ where: { id: req.params.id } }).then(function (
       dbExample
     ) {
       res.render("example", {
@@ -21,6 +21,42 @@ module.exports = function(app) {
       });
     });
   });
+
+  app.get("/home/:Email", function(req, res) {
+    console.log(req.params.Email);
+    console.log(req.body);
+    db.User.findOne({
+      where: { Email: req.params.Email },
+      include: [db.PostContent],
+      order: [[db.PostContent, "createdAt", "DESC"]]
+    }).then(function(dbUser) {
+      console.log(dbUser);
+      if (!dbUser) {
+        res.render("404");
+      } else {
+        res.render("home", { email: dbUser.Email, content: dbUser.PostContents });
+      };
+      })
+  });
+
+  app.get("/home/:Password", function (req, res) {
+    console.log(req.params.Password);
+    console.log(req.body);
+    db.User.findOne({ where: { Password: req.params.Password }, include: [db.PostContent], order: [[db.PostContent, "createdAt", 'DESC']] })
+      .then(function (dbUser) {
+      console.log(dbUser);
+      if (!dbUser) {
+          res.render("404");
+        } else {
+          res.render("home", { Password: dbUser.Password, content: dbUser.PostContents });
+        };
+      })
+  });
+
+  app.get("/home/:Email/profile", function(req, res) {
+    db.User.findOne({}).then(function(dbUser) {
+      res.render("profile");
+    });
 
   app.get("/home/:Email", function(req, res){
     db.User.findOne({where: {Email: req.params.Email}, include: [db.PostContent], order: [[db.PostContent, "createdAt", 'DESC']] }).then(function(dbUser){
@@ -68,10 +104,11 @@ module.exports = function(app) {
 
     // });
 
+
   });
 
-  app.get("/home/:Email/profile", function(req, res){
-    db.User.findOne({}).then(function(dbUser){
+  app.get("/home/:Password/profile", function(req, res) {
+    db.User.findOne({}).then(function(dbUser) {
       res.render("profile");
     });
   });
@@ -96,5 +133,4 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
-
 };
