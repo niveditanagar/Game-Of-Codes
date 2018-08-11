@@ -26,4 +26,4 @@
 
 
 ## Deployed App
-* [Game-of-Codes](https://dashboard.heroku.com/apps/sheltered-fortress-87681) - App
+* [Game-of-Codes](https://sheltered-fortress-87681.herokuapp.com/) - App
